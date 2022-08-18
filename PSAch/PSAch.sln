@@ -5,7 +5,12 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{A367AAC1-F1A3-4380-BFF8-428B0A81DEE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSAch.API", "PSAch.API\PSAch.API.csproj", "{78831282-818C-45C0-9443-F9A31225F70E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSAch.API", "PSAch.API\PSAch.API.csproj", "{78831282-818C-45C0-9443-F9A31225F70E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D72E79C-BDF1-483E-9D4C-6745A1735B91}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
