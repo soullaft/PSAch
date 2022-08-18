@@ -17,7 +17,7 @@ namespace PSAch.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Game>>> GetAllGames() => Ok(await _dataContext.Games.Include(g => g.Achievements).ToListAsync());
 
-        [HttpGet]
-        public async Task<ActionResult<Game>> GetGame([FromQuery] int id) => await _dataContext.Games.FirstOrDefaultAsync(g => g.Id == id);
+        [HttpGet("{gameId}", Name = "GetGame")]
+        public async Task<ActionResult<Game>> GetGame(int gameId) => await _dataContext.Games.FirstOrDefaultAsync(g => g.Id == gameId);
     }
 }
