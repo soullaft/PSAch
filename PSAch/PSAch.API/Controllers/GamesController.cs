@@ -1,23 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PSAch.API.Data;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using PSAch.API.Models;
+using PSAch.API.Queries;
 
 namespace PSAch.API.Controllers
 {
     public class GamesController : BaseApiController
     {
-        private readonly DataContext _dataContext;
+        private readonly IMediator _mediator;
 
-        public GamesController(DataContext dataContext)
+        public GamesController(IMediator mediator)
         {
-            _dataContext = dataContext;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Game>>> GetAllGames() => Ok(await _dataContext.Games.Include(g => g.Achievements).ToListAsync());
+        public async Task<ActionResult<IEnumerable<Game>>> GetAllGames() => Ok(await _mediator.Send(new GetGamesQuery()));
 
-        [HttpGet("{gameId}", Name = "GetGame")]
-        public async Task<ActionResult<Game>> GetGame(int gameId) => await _dataContext.Games.FirstOrDefaultAsync(g => g.Id == gameId);
+        //[HttpGet("{gameId}", Name = "GetGame")]
+        //public async Task<ActionResult<Game>> GetGame(int gameId) => await _dataContext.Games.FirstOrDefaultAsync(g => g.Id == gameId);
     }
 }

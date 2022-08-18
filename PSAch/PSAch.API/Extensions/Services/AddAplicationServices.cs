@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PSAch.API.Data;
 using System.Net;
+using MediatR;
 
 namespace PSAch.API.Extensions.Services
 {
@@ -21,6 +22,7 @@ namespace PSAch.API.Extensions.Services
                 options.HttpsPort = 443;
             });
 
+            services.AddMediatR(typeof(Program));
             services.AddControllers();
             services.AddCors();
 
