@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PSAch.API.Commands;
 using PSAch.API.Models;
 using PSAch.API.Queries;
 
@@ -17,7 +18,7 @@ namespace PSAch.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Game>>> GetAllGames() => Ok(await _mediator.Send(new GetGamesQuery()));
 
-        //[HttpGet("{gameId}", Name = "GetGame")]
-        //public async Task<ActionResult<Game>> GetGame(int gameId) => await _dataContext.Games.FirstOrDefaultAsync(g => g.Id == gameId);
+        [HttpGet("{gameId}", Name = "GetGame")]
+        public async Task<ActionResult<Game>> GetGame(int gameId) => await _mediator.Send(new GetGameCommand(gameId));
     }
 }
