@@ -2,6 +2,7 @@
 using PSAch.API.Data;
 using System.Net;
 using MediatR;
+using PSAch.API.Models;
 
 namespace PSAch.API.Extensions.Services
 {
@@ -13,7 +14,8 @@ namespace PSAch.API.Extensions.Services
             {
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
             });
-            //todo: configure all other services:
+
+            services.AddScoped<IBaseRepository<Game>, GamesRepository>();
 
             //make all http request to redirect to https protocol
             services.AddHttpsRedirection(options =>

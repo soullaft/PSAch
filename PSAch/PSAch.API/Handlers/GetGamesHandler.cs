@@ -9,32 +9,31 @@ namespace PSAch.API.Handlers
 {
     public class GetGamesHandler : IRequestHandler<GetGamesQuery, IEnumerable<Game>>
     {
-        private readonly DataContext _dataContext;
+        private readonly IBaseRepository<Game> _gamesRepository;
 
-        public GetGamesHandler(DataContext dataContext)
+        public GetGamesHandler(IBaseRepository<Game> gamesRepository)
         {
-            _dataContext = dataContext;
+            _gamesRepository = gamesRepository;
         }
 
         public async Task<IEnumerable<Game>> Handle(GetGamesQuery request, CancellationToken cancellationToken)
         {
-            return await _dataContext.Games.Include(g => g.Achievements).ToListAsync(cancellationToken: cancellationToken);
+            return await _gamesRepository.GetAllAsync();
         }
     }
 
     public class GetGameHandler : IRequestHandler<GetGameCommand, Game>
     {
-        private readonly DataContext _dataContext;
+        private readonly IBaseRepository<Game> _gamesRepository;
 
-        public GetGameHandler(DataContext dataContext)
+        public GetGameHandler(IBaseRepository<Game> gamesRepository)
         {
-            _dataContext = dataContext;
+            _gamesRepository = gamesRepository;
         }
 
         public async Task<Game> Handle(GetGameCommand request, CancellationToken cancellationToken)
         {
-            return await _dataContext.Games.FirstOrDefaultAsync(g => request.id == g.Id,
-                                                                cancellationToken: cancellationToken);
+            return await _gamesRepository.GetByIdAsync(request.id);
         }
     }
 }
