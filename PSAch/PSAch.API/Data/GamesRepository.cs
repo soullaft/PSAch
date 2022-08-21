@@ -12,6 +12,18 @@ namespace PSAch.API.Data
             _context = context;
         }
 
+        public async Task<Game> AddAsync(Game newEntity)
+        {
+            if(newEntity == null)
+                throw new ArgumentNullException(nameof(newEntity));
+
+            _context.Games.Add(newEntity);
+
+            await SaveChangesAsync();
+
+            return newEntity;
+        }
+
         public async Task<IEnumerable<Game>> GetAllAsync() => await _context.Games.Include(g => g.Achievements).ToListAsync();
 
         public async Task<Game> GetByIdAsync(int id)
@@ -19,7 +31,7 @@ namespace PSAch.API.Data
             if(id <= 0)
                 throw new ArgumentOutOfRangeException(nameof(id));
 
-            return await _context.Games.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Games.Include(g => g.Achievements).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<int> SaveChangesAsync()

@@ -10,6 +10,6 @@
 
         public DateTime ReleaseDate { get; set; }
 
-        public ICollection<Achievement> Achievements { get; set; }
+        public ICollection<Achievement>? Achievements { get; set; }
     }
 }

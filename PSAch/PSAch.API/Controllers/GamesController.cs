@@ -20,5 +20,8 @@ namespace PSAch.API.Controllers
 
         [HttpGet("{gameId}", Name = "GetGame")]
         public async Task<ActionResult<Game>> GetGame(int gameId) => await _mediator.Send(new GetGameCommand(gameId)) ?? new Game();
+
+        [HttpPost(Name = "AddGame")]
+        public async Task<ActionResult<Game>> AddGame([FromBody] Game newGame) => await _mediator.Send(new AddGameCommand(newGame));
     }
 }

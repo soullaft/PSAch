@@ -41,7 +41,7 @@ namespace PSAch.API.Migrations
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("Achievement");
+                    b.ToTable("Achievement", (string)null);
                 });
 
             modelBuilder.Entity("PSAch.API.Models.Game", b =>
@@ -63,7 +63,7 @@ namespace PSAch.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Games");
+                    b.ToTable("Games", (string)null);
                 });
 
             modelBuilder.Entity("PSAch.API.Models.Achievement", b =>

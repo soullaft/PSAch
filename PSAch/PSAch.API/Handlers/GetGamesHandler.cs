@@ -7,6 +7,9 @@ using PSAch.API.Queries;
 
 namespace PSAch.API.Handlers
 {
+    /// <summary>
+    /// Get all games handler
+    /// </summary>
     public class GetGamesHandler : IRequestHandler<GetGamesQuery, IEnumerable<Game>>
     {
         private readonly IBaseRepository<Game> _gamesRepository;
@@ -22,6 +25,9 @@ namespace PSAch.API.Handlers
         }
     }
 
+    /// <summary>
+    /// get single game handler
+    /// </summary>
     public class GetGameHandler : IRequestHandler<GetGameCommand, Game>
     {
         private readonly IBaseRepository<Game> _gamesRepository;
@@ -34,6 +40,21 @@ namespace PSAch.API.Handlers
         public async Task<Game> Handle(GetGameCommand request, CancellationToken cancellationToken)
         {
             return await _gamesRepository.GetByIdAsync(request.id);
+        }
+    }
+
+    public class AddGameHandler : IRequestHandler<AddGameCommand, Game>
+    {
+        private readonly IBaseRepository<Game> _gamesRepository;
+
+        public AddGameHandler(IBaseRepository<Game> gamesRepository)
+        {
+            _gamesRepository = gamesRepository;
+        }
+
+        public async Task<Game> Handle(AddGameCommand request, CancellationToken cancellationToken)
+        {
+            return await _gamesRepository.AddAsync(request.newGame);
         }
     }
 }
