@@ -19,8 +19,6 @@
         /// <returns></returns>
         Task<T> GetByIdAsync(int id);
 
-        Task<T> AddAsync(T newEntity);
-
         /// <summary>
         /// Save all changes
         /// </summary>

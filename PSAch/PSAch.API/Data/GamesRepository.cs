@@ -16,16 +16,16 @@ namespace PSAch.API.Data
             _mapper = mapper;
         }
 
-        public async Task<Game> AddAsync(Game newEntity)
+        public async Task<Game> AddAsync(GameDto newEntity)
         {
             if(newEntity == null)
                 throw new ArgumentNullException(nameof(newEntity));
 
-            _context.Games.Add(newEntity);
+            _context.Games.Add(_mapper.Map(newEntity, new Game()));
 
             await SaveChangesAsync();
 
-            return newEntity;
+            return await _context.Games.LastOrDefaultAsync();
         }
 
         public async Task DeleteAsync(int id)

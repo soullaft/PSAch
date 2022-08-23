@@ -11,5 +11,7 @@ namespace PSAch.API.Data
         /// <param name="entity"></param>
         /// <returns></returns>
         Task UpdateAsync(GameDto entity);
+
+        Task<Game> AddAsync(GameDto gameDto);
     }
 }

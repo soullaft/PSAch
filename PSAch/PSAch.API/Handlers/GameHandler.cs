@@ -50,7 +50,7 @@ namespace PSAch.API.Handlers
     /// </summary>
     public class AddGameHandler : IRequestHandler<AddGameCommand, Game>
     {
-        private readonly IBaseRepository<Game> _gamesRepository;
+        private readonly IGamesRepository _gamesRepository;
 
         public AddGameHandler(IGamesRepository gamesRepository)
         {

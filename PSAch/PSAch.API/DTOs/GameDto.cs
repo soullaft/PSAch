@@ -1,4 +1,6 @@
-﻿namespace PSAch.API.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PSAch.API.DTOs
 {
     public class GameDto
     {
@@ -9,6 +11,9 @@
         public string Name { get; set; }
 
         public DateTime ReleaseDate { get; set; }
+
+        [Range(1, 10)]
+        public int Difficulty { get; set; }
 
         public ICollection<AchievementDto> Achievements { get; set; }
     }
