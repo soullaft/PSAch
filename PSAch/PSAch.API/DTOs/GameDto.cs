@@ -1,6 +1,6 @@
-﻿namespace PSAch.API.Models
+﻿namespace PSAch.API.DTOs
 {
-    public class Game
+    public class GameDto
     {
         public int Id { get; set; }
 
@@ -10,6 +10,6 @@
 
         public DateTime ReleaseDate { get; set; }
 
-        public ICollection<Achievement> Achievements { get; set; }
+        public ICollection<AchievementDto> Achievements { get; set; }
     }
 }

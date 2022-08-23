@@ -1,7 +1,9 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PSAch.API.Commands;
 using PSAch.API.Data;
+using PSAch.API.DTOs;
 using PSAch.API.Models;
 using PSAch.API.Queries;
 
@@ -14,7 +16,7 @@ namespace PSAch.API.Handlers
     {
         private readonly IBaseRepository<Game> _gamesRepository;
 
-        public GetGamesHandler(IBaseRepository<Game> gamesRepository)
+        public GetGamesHandler(IGamesRepository gamesRepository)
         {
             _gamesRepository = gamesRepository;
         }
@@ -32,7 +34,7 @@ namespace PSAch.API.Handlers
     {
         private readonly IBaseRepository<Game> _gamesRepository;
 
-        public GetGameHandler(IBaseRepository<Game> gamesRepository)
+        public GetGameHandler(IGamesRepository gamesRepository)
         {
             _gamesRepository = gamesRepository;
         }
@@ -50,7 +52,7 @@ namespace PSAch.API.Handlers
     {
         private readonly IBaseRepository<Game> _gamesRepository;
 
-        public AddGameHandler(IBaseRepository<Game> gamesRepository)
+        public AddGameHandler(IGamesRepository gamesRepository)
         {
             _gamesRepository = gamesRepository;
         }
@@ -58,6 +60,25 @@ namespace PSAch.API.Handlers
         public async Task<Game> Handle(AddGameCommand request, CancellationToken cancellationToken)
         {
             return await _gamesRepository.AddAsync(request.newGame);
+        }
+    }
+
+    public class UpdateGameHandler : IRequestHandler<UpdateGameCommand, Unit>
+    {
+        private readonly IGamesRepository _gamesRepository;
+        private readonly IMapper _mapper;
+
+        public UpdateGameHandler(IGamesRepository gamesRepository, IMapper mapper)
+        {
+            _gamesRepository = gamesRepository;
+            _mapper = mapper;
+        }
+
+        public async Task<Unit> Handle(UpdateGameCommand request, CancellationToken cancellationToken)
+        {
+            await _gamesRepository.UpdateAsync(request.updatedGame);
+
+            return Unit.Value;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PSAch.API.Commands;
+using PSAch.API.DTOs;
 using PSAch.API.Models;
 using PSAch.API.Queries;
 
@@ -23,5 +24,13 @@ namespace PSAch.API.Controllers
 
         [HttpPost(Name = "AddGame")]
         public async Task<ActionResult<Game>> AddGame([FromBody] Game newGame) => await _mediator.Send(new AddGameCommand(newGame));
+
+        [HttpPut(Name = "UpdateGame")]
+        public async Task<ActionResult> UpdateGame([FromBody] GameDto updatedGame)
+        {
+            await _mediator.Send(new UpdateGameCommand(updatedGame));
+
+            return NoContent();
+        }
     }
 }

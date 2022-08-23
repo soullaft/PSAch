@@ -11,6 +11,10 @@
         public AchievemntTypes AchievemntType { get; set; }
 
         public bool IsCompleted { get; set; }
+
+        public Game Game { get; set; }
+
+        public int GameId { get; set; }
     }
 
     public enum AchievemntTypes : int

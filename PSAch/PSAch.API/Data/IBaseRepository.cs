@@ -22,16 +22,9 @@
         Task<T> AddAsync(T newEntity);
 
         /// <summary>
-        /// Update <see cref="{T}"/> entity async
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        Task<T> UpdateAsync(T entity);
-
-        /// <summary>
         /// Save all changes
         /// </summary>
         /// <returns></returns>
-        Task<int> SaveChangesAsync();
+        Task<bool> SaveChangesAsync();
     }
 }
