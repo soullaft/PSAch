@@ -25,7 +25,14 @@ namespace PSAch.API.Controllers
         [HttpPost(Name = "AddGame")]
         public async Task<ActionResult<Game>> AddGame([FromBody] Game newGame) => await _mediator.Send(new AddGameCommand(newGame));
 
-        [HttpPut(Name = "UpdateGame")]
+        [HttpDelete]
+        public async Task<ActionResult> DeleteGame(int gameId)
+        {
+            await _mediator.Send(new DeleteGameCommand(gameId));
+            return NoContent();
+        }
+
+        [HttpPut]
         public async Task<ActionResult> UpdateGame([FromBody] GameDto updatedGame)
         {
             await _mediator.Send(new UpdateGameCommand(updatedGame));

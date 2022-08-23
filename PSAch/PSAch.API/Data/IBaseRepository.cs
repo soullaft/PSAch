@@ -26,5 +26,7 @@
         /// </summary>
         /// <returns></returns>
         Task<bool> SaveChangesAsync();
+
+        Task DeleteAsync(int id);
     }
 }

@@ -28,6 +28,19 @@ namespace PSAch.API.Data
             return newEntity;
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var game = _context.Games.FirstOrDefault(x => x.Id == id);
+
+            if (game == null)
+                throw new ArgumentNullException(nameof(game));
+
+            _context.Games.Remove(game);
+
+            if (!await SaveChangesAsync())
+                throw new Exception("Something went wrong");
+        }
+
         public async Task<IEnumerable<Game>> GetAllAsync(CancellationToken token = default) => await _context.Games.ToListAsync(cancellationToken: token);
 
         public async Task<Game> GetByIdAsync(int id)

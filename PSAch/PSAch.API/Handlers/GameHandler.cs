@@ -81,4 +81,20 @@ namespace PSAch.API.Handlers
             return Unit.Value;
         }
     }
+
+    public class DeleteGameHandler : IRequestHandler<DeleteGameCommand, Unit>
+    {
+        private readonly IGamesRepository _gamesRepository;
+
+        public DeleteGameHandler(IGamesRepository gamesRepository)
+        {
+            _gamesRepository = gamesRepository;
+        }
+
+        public async Task<Unit> Handle(DeleteGameCommand request, CancellationToken cancellationToken)
+        {
+            await _gamesRepository.DeleteAsync(request.id);
+            return Unit.Value;
+        }
+    }
 }
