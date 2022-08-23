@@ -10,7 +10,7 @@
         /// Get all records of type <see cref="{T}"/> async
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync(CancellationToken token);
 
         /// <summary>
         /// Get single record of type <see cref="{T}"/> async

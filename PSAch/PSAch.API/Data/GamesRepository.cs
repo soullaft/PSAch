@@ -24,7 +24,7 @@ namespace PSAch.API.Data
             return newEntity;
         }
 
-        public async Task<IEnumerable<Game>> GetAllAsync() => await _context.Games.Include(g => g.Achievements).ToListAsync();
+        public async Task<IEnumerable<Game>> GetAllAsync(CancellationToken token = default) => await _context.Games.Include(g => g.Achievements).ToListAsync(cancellationToken: token);
 
         public async Task<Game> GetByIdAsync(int id)
         {

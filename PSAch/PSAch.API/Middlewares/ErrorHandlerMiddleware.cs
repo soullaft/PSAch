@@ -59,7 +59,7 @@ namespace PSAch.API.Middlewares
 
             var json = JsonSerializer.Serialize(response, options);
 
-            await context.Response.WriteAsync(json);
+            await context.Response.WriteAsJsonAsync(json);
         }
     }
 }

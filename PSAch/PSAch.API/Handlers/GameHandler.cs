@@ -21,7 +21,7 @@ namespace PSAch.API.Handlers
 
         public async Task<IEnumerable<Game>> Handle(GetGamesQuery request, CancellationToken cancellationToken)
         {
-            return await _gamesRepository.GetAllAsync();
+            return await _gamesRepository.GetAllAsync(cancellationToken);
         }
     }
 
@@ -43,6 +43,9 @@ namespace PSAch.API.Handlers
         }
     }
 
+    /// <summary>
+    /// Add game handler
+    /// </summary>
     public class AddGameHandler : IRequestHandler<AddGameCommand, Game>
     {
         private readonly IBaseRepository<Game> _gamesRepository;
