@@ -21,11 +21,11 @@ namespace PSAch.API.Data
             if(newEntity == null)
                 throw new ArgumentNullException(nameof(newEntity));
 
-            _context.Games.Add(_mapper.Map(newEntity, new Game()));
+            await _context.Games.AddAsync(_mapper.Map(newEntity, new Game()));
 
             await SaveChangesAsync();
 
-            return await _context.Games.LastOrDefaultAsync();
+            return await _context.Games.LastAsync();
         }
 
         public async Task DeleteAsync(int id)
