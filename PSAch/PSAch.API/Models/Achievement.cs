@@ -9,6 +9,8 @@
         public string Decription { get; set; }
 
         public AchievemntTypes AchievemntType { get; set; }
+
+        public bool IsCompleted { get; set; }
     }
 
     public enum AchievemntTypes : int
