@@ -39,7 +39,7 @@ namespace PSAch.API.Handlers
         }
     }
 
-    public class AddGameHandler : IRequestHandler<AddGameCommand, Game>
+    public class AddGameHandler : IRequestHandler<AddGameCommand, GameDto>
     {
         private readonly IGamesRepository _gamesRepository;
 
@@ -48,7 +48,7 @@ namespace PSAch.API.Handlers
             _gamesRepository = gamesRepository;
         }
 
-        public async Task<Game> Handle(AddGameCommand request, CancellationToken cancellationToken)
+        public async Task<GameDto> Handle(AddGameCommand request, CancellationToken cancellationToken)
         {
             return await _gamesRepository.AddAsync(request.newGame);
         }

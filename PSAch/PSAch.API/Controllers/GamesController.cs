@@ -23,13 +23,16 @@ namespace PSAch.API.Controllers
         public async Task<ActionResult<GameDto>> GetGame(int gameId) => await _mediator.Send(new GetGameCommand(gameId));
 
         [HttpPost(Name = "AddGame")]
-        public async Task<ActionResult<Game>> AddGame([FromBody] GameDto newGame) => await _mediator.Send(new AddGameCommand(newGame));
+        public async Task<ActionResult<GameDto>> AddGame([FromBody] GameDto newGame) => await _mediator.Send(new AddGameCommand(newGame));
 
         [HttpDelete]
         public async Task<ActionResult> DeleteGame(int gameId)
         {
             await _mediator.Send(new DeleteGameCommand(gameId));
-            return NoContent();
+            
+            Response.StatusCode = 200;
+
+            return Ok();
         }
 
         [HttpPut]
@@ -37,7 +40,9 @@ namespace PSAch.API.Controllers
         {
             await _mediator.Send(new UpdateGameCommand(updatedGame));
 
-            return NoContent();
+            Response.StatusCode = 200;
+
+            return Ok();
         }
     }
 }

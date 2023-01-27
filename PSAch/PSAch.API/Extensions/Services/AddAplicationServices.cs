@@ -3,6 +3,7 @@ using PSAch.API.Data;
 using System.Net;
 using MediatR;
 using PSAch.API.Mapper;
+using System.Text.Json.Serialization;
 
 namespace PSAch.API.Extensions.Services
 {
@@ -26,7 +27,8 @@ namespace PSAch.API.Extensions.Services
 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddMediatR(typeof(Program));
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.AddCors();
 
             services.AddEndpointsApiExplorer();

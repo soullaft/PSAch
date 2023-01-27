@@ -6,7 +6,7 @@ namespace PSAch.API.Commands
 {
     public record GetGameCommand(int id) : IRequest<GameDto>;
 
-    public record AddGameCommand(GameDto newGame) : IRequest<Game>;
+    public record AddGameCommand(GameDto newGame) : IRequest<GameDto>;
 
     public record UpdateGameCommand(GameDto updatedGame) : IRequest<Unit>;
 

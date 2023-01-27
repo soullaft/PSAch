@@ -16,21 +16,23 @@ namespace PSAch.API.Data
             _mapper = mapper;
         }
 
-        public async Task<Game> AddAsync(GameDto newEntity)
+        public async Task<GameDto> AddAsync(GameDto newEntity)
         {
             if(newEntity == null)
                 throw new ArgumentNullException(nameof(newEntity));
 
-            await _context.Games.AddAsync(_mapper.Map(newEntity, new Game()));
+            var game = new Game();
+
+            await _context.Games.AddAsync(_mapper.Map(newEntity, game));
 
             await SaveChangesAsync();
 
-            return await _context.Games.OrderByDescending(x => x.CreationDate).FirstAsync();
+            return _mapper.Map(await _context.Games.OrderByDescending(x => x.CreationDate).FirstAsync(), new GameDto());
         }
 
         public async Task<GameDto> GetByIdAsync(int gameId)
         {
-            var game = await _context.Games.FirstOrDefaultAsync(x => x.Id == gameId);
+            var game = await _context.Games.Include(x => x.Achievements).FirstOrDefaultAsync(x => x.Id == gameId);
 
             if (game == null) throw new ArgumentException($"Not found, invalid game id number with {gameId}");
 
@@ -43,7 +45,7 @@ namespace PSAch.API.Data
 
         public async Task DeleteAsync(int id)
         {
-            var game = _context.Games.FirstOrDefault(x => x.Id == id);
+            var game = _context.Games.Include(x => x.Achievements).FirstOrDefault(x => x.Id == id);
 
             if (game == null)
                 throw new ArgumentNullException(nameof(game));

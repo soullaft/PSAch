@@ -12,7 +12,7 @@ namespace PSAch.API.Data
         /// <returns></returns>
         Task UpdateAsync(GameDto entity);
 
-        Task<Game> AddAsync(GameDto gameDto);
+        Task<GameDto> AddAsync(GameDto gameDto);
 
         Task<GameDto> GetByIdAsync(int gameId);
     }

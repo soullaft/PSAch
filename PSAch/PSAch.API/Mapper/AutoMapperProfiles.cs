@@ -8,8 +8,8 @@ namespace PSAch.API.Mapper
     {
         public AutoMapperProfiles()
         {
-            CreateMap<GameDto, Game>();
-            CreateMap<Game, GameDto>();
+            CreateMap<GameDto, Game>().ReverseMap();
+            CreateMap<AchievementDto, Achievement>().ReverseMap();
         }
     }
 }

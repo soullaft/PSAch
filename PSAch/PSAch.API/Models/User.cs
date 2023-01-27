@@ -1,6 +1,6 @@
 ﻿namespace PSAch.API.Models
 {
-    public class User
+    public class AppUser : BaseModel
     {
     }
 }

@@ -12,6 +12,6 @@ namespace PSAch.API.DTOs
 
         public AchievemntTypes AchievemntType { get; set; }
 
-        public bool IsCompleted { get; set; }
+        public bool IsCompleted { get; set; } = false;
     }
 }
