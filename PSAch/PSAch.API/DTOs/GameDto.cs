@@ -15,6 +15,6 @@ namespace PSAch.API.DTOs
         [Range(1, 10)]
         public int Difficulty { get; set; }
 
-        public ICollection<AchievementDto> Achievements { get; set; }
+        public ICollection<AchievementDto>? Achievements { get; set; }
     }
 }

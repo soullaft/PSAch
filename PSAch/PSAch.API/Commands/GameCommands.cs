@@ -4,7 +4,7 @@ using PSAch.API.Models;
 
 namespace PSAch.API.Commands
 {
-    public record GetGameCommand(int id) : IRequest<Game>;
+    public record GetGameCommand(int id) : IRequest<GameDto>;
 
     public record AddGameCommand(GameDto newGame) : IRequest<Game>;
 

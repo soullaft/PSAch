@@ -25,7 +25,20 @@ namespace PSAch.API.Data
 
             await SaveChangesAsync();
 
-            return await _context.Games.LastAsync();
+            return await _context.Games.OrderByDescending(x => x.CreationDate).FirstAsync();
+        }
+
+        public async Task<GameDto> GetByIdAsync(int gameId)
+        {
+            var game = await _context.Games.FirstOrDefaultAsync(x => x.Id == gameId);
+
+            if (game == null) throw new ArgumentException($"Not found, invalid game id number with {gameId}");
+
+            var resultDto = new GameDto();
+
+            _mapper.Map(game, resultDto);
+
+            return resultDto;
         }
 
         public async Task DeleteAsync(int id)
@@ -42,14 +55,6 @@ namespace PSAch.API.Data
         }
 
         public async Task<IEnumerable<Game>> GetAllAsync(CancellationToken token = default) => await _context.Games.ToListAsync(cancellationToken: token);
-
-        public async Task<Game> GetByIdAsync(int id)
-        {
-            if(id <= 0)
-                throw new ArgumentOutOfRangeException(nameof(id));
-
-            return await _context.Games.FirstOrDefaultAsync(x => x.Id == id);
-        }
 
         public async Task<bool> SaveChangesAsync()
         {

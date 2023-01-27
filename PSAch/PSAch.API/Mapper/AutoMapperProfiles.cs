@@ -9,6 +9,7 @@ namespace PSAch.API.Mapper
         public AutoMapperProfiles()
         {
             CreateMap<GameDto, Game>();
+            CreateMap<Game, GameDto>();
         }
     }
 }

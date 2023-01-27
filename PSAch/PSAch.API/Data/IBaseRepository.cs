@@ -13,13 +13,6 @@
         Task<IEnumerable<T>> GetAllAsync(CancellationToken token);
 
         /// <summary>
-        /// Get single record of type <see cref="{T}"/> async
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        Task<T> GetByIdAsync(int id);
-
-        /// <summary>
         /// Save all changes
         /// </summary>
         /// <returns></returns>

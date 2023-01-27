@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PSAch.API.Data;
 
@@ -10,9 +11,10 @@ using PSAch.API.Data;
 namespace PSAch.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230125222207_AddedCreationDateField")]
+    partial class AddedCreationDateField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
@@ -33,7 +35,7 @@ namespace PSAch.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("GameId")
+                    b.Property<int>("GameId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsCompleted")
@@ -43,16 +45,11 @@ namespace PSAch.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("PhotoId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.HasIndex("GameId");
 
-                    b.HasIndex("PhotoId");
-
-                    b.ToTable("Achievements");
+                    b.ToTable("Achievement");
                 });
 
             modelBuilder.Entity("PSAch.API.Models.Game", b =>
@@ -67,9 +64,6 @@ namespace PSAch.API.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int?>("PhotoId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("PhotoUrl")
                         .IsRequired()
@@ -80,62 +74,18 @@ namespace PSAch.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PhotoId");
-
                     b.ToTable("Games");
-                });
-
-            modelBuilder.Entity("PSAch.API.Models.Photo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<byte[]>("Bytes")
-                        .IsRequired()
-                        .HasColumnType("BLOB");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FileExtensions")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("Size")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Photos");
                 });
 
             modelBuilder.Entity("PSAch.API.Models.Achievement", b =>
                 {
                     b.HasOne("PSAch.API.Models.Game", "Game")
                         .WithMany("Achievements")
-                        .HasForeignKey("GameId");
-
-                    b.HasOne("PSAch.API.Models.Photo", "Photo")
-                        .WithMany()
-                        .HasForeignKey("PhotoId");
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Game");
-
-                    b.Navigation("Photo");
-                });
-
-            modelBuilder.Entity("PSAch.API.Models.Game", b =>
-                {
-                    b.HasOne("PSAch.API.Models.Photo", "Photo")
-                        .WithMany()
-                        .HasForeignKey("PhotoId");
-
-                    b.Navigation("Photo");
                 });
 
             modelBuilder.Entity("PSAch.API.Models.Game", b =>
