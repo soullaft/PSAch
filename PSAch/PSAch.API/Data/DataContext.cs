@@ -11,6 +11,8 @@ namespace PSAch.API.Data
 
         public DbSet<Photo> Photos { get; set; }
 
+        public DbSet<AppUser> AppUsers { get; set; }
+
         public DataContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
