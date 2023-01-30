@@ -12,8 +12,6 @@ namespace PSAch.API.Models
 
         public byte[]? PasswordSalt { get; set; }
 
-        public int Age { get; set; }
-
         public Gender Gender { get; set; }
 
         public string? Email { get; set; }

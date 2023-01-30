@@ -1,8 +1,8 @@
 ﻿namespace PSAch.API.Models
 {
-    public enum Gender
+    public enum Gender : int
     {
-        Male,
-        Female
+        Male = 0,
+        Female = 1,
     }
 }

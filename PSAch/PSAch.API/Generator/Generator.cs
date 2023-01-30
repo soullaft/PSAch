@@ -9,7 +9,7 @@ namespace PSAch.API.Generator
     public class Generator
     {
         private const string HARDCODED_PASSWORD = "1234";
-
+        
         public static async Task GenerateUsersAsync(DataContext dataContext, IConfiguration configuration)
         {
             var generatedFilePath = configuration["GeneratedUserFile"];

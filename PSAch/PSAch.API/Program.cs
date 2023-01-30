@@ -4,8 +4,10 @@ using NLog.Web;
 using PSAch.API.Data;
 using Microsoft.EntityFrameworkCore;
 using PSAch.API.Middlewares;
+using PSAch.API.Generator;
 
 var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+
 try
 {
     var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,11 @@ try
     {
         var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
         dataContext.Database.Migrate();
+
+        if(builder.Configuration.GetValue<bool>("LocalVariables:generateUsers"))
+        {
+            await Generator.GenerateUsersAsync(dataContext, builder.Configuration);
+        }
     }
 
     if (app.Environment.IsDevelopment())
