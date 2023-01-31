@@ -26,4 +26,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties generator_4user-data_1json__JsonSchema="https://json.schemastore.org/cheatsheets.json" /></VisualStudio></ProjectExtensions>
+
 </Project>

@@ -18,9 +18,11 @@ namespace PSAch.API.Generator
             var userdata = await File.ReadAllTextAsync(generatedFilePath);
             var users = JsonSerializer.Deserialize<ICollection<AppUser>>(userdata);
 
+            if (users == null) throw new FormatException($"Файл {generatedFilePath} имеет некорректную структуру или был некорректно загружен.");
+
             foreach(var user in users)
             {
-                user.Login = user.Login.ToLower();
+                user.Login = user.Login?.ToLower();
                 var hashSalt = GenerateHashSalt(HARDCODED_PASSWORD);
                 user.PasswordHash = hashSalt.Item1;
                 user.PasswordSalt = hashSalt.Item2;
