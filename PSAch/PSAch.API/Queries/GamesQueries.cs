@@ -13,7 +13,7 @@ namespace PSAch.API.Queries
 
         public bool BypassCache { get; set; }
 
-        public string CacheKey { get; set; }
+        public string CacheKey => "GamesListQuery";
 
         public TimeSpan? SlidingExpiration { get; set; }
     }

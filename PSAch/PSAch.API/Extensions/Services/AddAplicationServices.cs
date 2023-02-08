@@ -7,6 +7,7 @@ using System.Text.Json.Serialization;
 using PSAch.API.Models;
 using PSAch.API.Services.Mail;
 using PSAch.API.Services.Cache;
+using System.Reflection;
 
 namespace PSAch.API.Extensions.Services
 {
@@ -23,6 +24,7 @@ namespace PSAch.API.Extensions.Services
             services.AddScoped<IGamesRepository, GamesRepository>();
             services.AddTransient<IMailService, MailService>();
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
+            services.Configure<CacheSettings>(configuration.GetSection("CacheSettings"));
 
             //make all http request to redirect to https protocol
             services.AddHttpsRedirection(options =>
@@ -32,7 +34,7 @@ namespace PSAch.API.Extensions.Services
             });
 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
-            services.AddMediatR(typeof(Program));
+            services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
             services.AddControllers()
                 .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);

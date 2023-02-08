@@ -17,7 +17,7 @@ namespace PSAch.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Game>>> GetAllGames() => Ok(await _mediator.Send(new GetGamesQuery()));
+        public async Task<ActionResult<IEnumerable<Game>>> GetAllGames() => Ok(await _mediator.Send(new GetGamesQuery { BypassCache = false }));
 
         [HttpGet("{gameId}", Name = "GetGame")]
         public async Task<ActionResult<GameDto>> GetGame(int gameId) => Ok(await _mediator.Send(new GetGameCommand(gameId)));
