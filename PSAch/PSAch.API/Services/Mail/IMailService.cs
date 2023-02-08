@@ -1,6 +1,6 @@
 ﻿using PSAch.API.Models;
 
-namespace PSAch.API.Services
+namespace PSAch.API.Services.Mail
 {
     public interface IMailService
     {

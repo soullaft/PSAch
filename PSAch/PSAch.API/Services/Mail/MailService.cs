@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using MimeKit;
 using PSAch.API.Models;
 
-namespace PSAch.API.Services
+namespace PSAch.API.Services.Mail
 {
     public class MailService : IMailService
     {
