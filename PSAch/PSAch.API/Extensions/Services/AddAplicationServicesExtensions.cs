@@ -4,7 +4,6 @@ using System.Net;
 using MediatR;
 using PSAch.API.Mapper;
 using System.Text.Json.Serialization;
-using PSAch.API.Models;
 using PSAch.API.Services.Mail;
 using PSAch.API.Services.Cache;
 using System.Reflection;
@@ -21,10 +20,6 @@ namespace PSAch.API.Extensions.Services
             });
 
             services.AddDistributedMemoryCache();
-            services.AddScoped<IGamesRepository, GamesRepository>();
-            services.AddTransient<IMailService, MailService>();
-            services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
-            services.Configure<CacheSettings>(configuration.GetSection("CacheSettings"));
 
             //make all http request to redirect to https protocol
             services.AddHttpsRedirection(options =>

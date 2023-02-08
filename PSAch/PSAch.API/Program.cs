@@ -12,6 +12,8 @@ try
 {
     var builder = WebApplication.CreateBuilder(args);
 
+    builder.Services.AddConfigurationOptionsValues(builder.Configuration);
+    builder.Services.AddDependecyInjectionServices();
     builder.Services.AddAplicationServices(builder.Configuration);
 
     // NLog setup
