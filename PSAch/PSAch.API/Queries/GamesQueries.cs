@@ -1,10 +1,20 @@
 ﻿using MediatR;
 using PSAch.API.Models;
+using PSAch.API.Services.Cache;
 
 namespace PSAch.API.Queries
 {
     /// <summary>
     /// Query for get all <see cref="IEnumerable<Game>"/>
     /// </summary>
-    public record GetGamesQuery() : IRequest<IEnumerable<Game>>;
+    public class GetGamesQuery : IRequest<IEnumerable<Game>>, ICacheableMediatrQuery
+    {
+        public int Id { get; set; }
+
+        public bool BypassCache { get; set; }
+
+        public string CacheKey { get; set; }
+
+        public TimeSpan? SlidingExpiration { get; set; }
+    }
 }
