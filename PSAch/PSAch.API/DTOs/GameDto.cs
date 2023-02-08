@@ -2,7 +2,7 @@
 
 namespace PSAch.API.DTOs
 {
-    public class GameDto
+    public sealed class GameDto
     {
         public int Id { get; set; }
 

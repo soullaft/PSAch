@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PSAch.API.DTOs
 {
-    public class RegisterUserDto
+    public sealed class RegisterUserDto
     {
         [Required]
         public string? Login { get; set; }

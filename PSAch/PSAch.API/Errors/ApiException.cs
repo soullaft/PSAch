@@ -1,6 +1,6 @@
 ﻿namespace PSAch.API.Errors
 {
-    public class ApiException
+    public sealed class ApiException
     {
         public int StatusCode { get; set; }
 

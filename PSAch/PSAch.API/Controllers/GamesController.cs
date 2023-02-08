@@ -7,7 +7,7 @@ using PSAch.API.Queries;
 
 namespace PSAch.API.Controllers
 {
-    public class GamesController : BaseApiController
+    public sealed class GamesController : BaseApiController
     {
         private readonly IMediator _mediator;
 

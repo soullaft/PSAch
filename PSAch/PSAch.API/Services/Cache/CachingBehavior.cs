@@ -2,9 +2,7 @@
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Org.BouncyCastle.Asn1.Ocsp;
 using System.Text;
-using System.Threading;
 
 namespace PSAch.API.Services.Cache
 {
