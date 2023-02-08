@@ -35,7 +35,7 @@ try
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
-        app.UseSwaggerUI();
+        app.UseSwaggerUI(c => { c.DisplayRequestDuration(); });
     }
 
     app.UseCors(policy =>
