@@ -6,7 +6,7 @@ using PSAch.API.Models;
 
 namespace PSAch.API.Services.Mail
 {
-    public class MailService : IMailService
+    public sealed class MailService : IMailService
     {
         private readonly MailSettings _mailSettings;
 

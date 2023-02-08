@@ -6,6 +6,7 @@ using PSAch.API.Mapper;
 using System.Text.Json.Serialization;
 using PSAch.API.Models;
 using PSAch.API.Services.Mail;
+using PSAch.API.Services.Cache;
 
 namespace PSAch.API.Extensions.Services
 {
@@ -18,6 +19,7 @@ namespace PSAch.API.Extensions.Services
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddDistributedMemoryCache();
             services.AddScoped<IGamesRepository, GamesRepository>();
             services.AddTransient<IMailService, MailService>();
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
@@ -31,6 +33,7 @@ namespace PSAch.API.Extensions.Services
 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddMediatR(typeof(Program));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
             services.AddControllers()
                 .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.AddCors();
