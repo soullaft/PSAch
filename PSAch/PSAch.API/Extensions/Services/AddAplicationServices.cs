@@ -5,7 +5,7 @@ using MediatR;
 using PSAch.API.Mapper;
 using System.Text.Json.Serialization;
 using PSAch.API.Models;
-using MailKit;
+using PSAch.API.Services;
 
 namespace PSAch.API.Extensions.Services
 {
