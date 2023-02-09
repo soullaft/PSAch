@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PSAch.API.DTOs;
 using PSAch.API.Models;
-using System;
 
 namespace PSAch.API.Data
 {
@@ -31,6 +30,11 @@ namespace PSAch.API.Data
             return result;
         }
 
+        /// <summary>
+        /// Перед сохранением изменений добавить соответствующие изменения в таблицу логов
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         private async Task OnBeforeSaveChanges(string userId)
         {
             // сканируем сущность на наличие каких либо изменений
@@ -38,12 +42,14 @@ namespace PSAch.API.Data
             var auditEntries = new List<AuditEntry>();
             foreach (var entry in ChangeTracker.Entries())
             {
-                if (entry.Entity is Audit || entry.State == EntityState.Detached || entry.State == EntityState.Unchanged)
-                    continue;
-                var auditEntry = new AuditEntry(entry);
-                //получаем название таблицы
-                auditEntry.TableName = entry.Entity.GetType().Name;
-                auditEntry.UserId = userId;
+                if (entry.Entity is Audit || entry.State == EntityState.Detached || entry.State == EntityState.Unchanged) continue;
+
+                var auditEntry = new AuditEntry(entry)
+                {
+                    //получаем название таблицы
+                    TableName = entry.Entity.GetType().Name,
+                    UserId = userId
+                };
                 auditEntries.Add(auditEntry);
                 foreach (var property in entry.Properties)
                 {
