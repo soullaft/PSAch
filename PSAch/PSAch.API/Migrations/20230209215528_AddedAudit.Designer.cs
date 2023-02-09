@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PSAch.API.Data;
 
@@ -10,9 +11,10 @@ using PSAch.API.Data;
 namespace PSAch.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230209215528_AddedAudit")]
+    partial class AddedAudit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
@@ -113,18 +115,22 @@ namespace PSAch.API.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AffectedColumns")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NewValues")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("OldValues")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PrimaryKey")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TableName")
