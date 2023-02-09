@@ -35,7 +35,7 @@ namespace PSAch.API.Handlers
 
         public async Task<GameDto> Handle(GetGameCommand request, CancellationToken cancellationToken)
         {
-            return await _gamesRepository.GetByIdAsync(request.id);
+            return await _gamesRepository.GetByIdAsync(request.Id);
         }
     }
 

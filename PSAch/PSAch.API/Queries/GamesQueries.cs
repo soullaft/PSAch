@@ -9,8 +9,6 @@ namespace PSAch.API.Queries
     /// </summary>
     public class GetGamesQuery : IRequest<IEnumerable<Game>>, ICacheableMediatrQuery
     {
-        public int Id { get; set; }
-
         public bool BypassCache { get; set; }
 
         public string CacheKey => "GamesListQuery";

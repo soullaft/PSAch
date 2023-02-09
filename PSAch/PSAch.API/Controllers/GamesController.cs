@@ -20,7 +20,7 @@ namespace PSAch.API.Controllers
         public async Task<ActionResult<IEnumerable<Game>>> GetAllGames() => Ok(await _mediator.Send(new GetGamesQuery { BypassCache = false }));
 
         [HttpGet("{gameId}", Name = "GetGame")]
-        public async Task<ActionResult<GameDto>> GetGame(int gameId) => Ok(await _mediator.Send(new GetGameCommand(gameId)));
+        public async Task<ActionResult<GameDto>> GetGame(int gameId) => Ok(await _mediator.Send(new GetGameCommand { Id = gameId, BypassCache = false }));
 
         [HttpPost(Name = "AddGame")]
         public async Task<ActionResult<GameDto>> AddGame([FromBody] GameDto newGame) => Ok(await _mediator.Send(new AddGameCommand(newGame)));
