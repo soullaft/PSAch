@@ -1,5 +1,5 @@
 ﻿using PSAch.API.DTOs;
-using PSAch.API.Models;
+using PSAch.Core;
 
 namespace PSAch.API.Data
 {

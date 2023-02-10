@@ -1,4 +1,6 @@
-﻿namespace PSAch.API.Models
+﻿using PSAch.Core;
+
+namespace PSAch.Core
 {
     public class Game : BaseModel
     {

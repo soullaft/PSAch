@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using PSAch.API.Commands;
 using PSAch.API.DTOs;
-using PSAch.API.Models;
 using PSAch.API.Queries;
+using PSAch.Core;
 
 namespace PSAch.API.Controllers
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PSAch.API.Models
+namespace PSAch.Core
 {
     public class AppUser : BaseModel
     {
@@ -26,7 +26,7 @@ namespace PSAch.API.Models
 
         public DateTime DateOfBirth { get; set; }
 
-        public Photo? Photo { get; set; }  
+        public Photo? Photo { get; set; }
 
         public ICollection<Game>? TrackedGames { get; set; }
     }

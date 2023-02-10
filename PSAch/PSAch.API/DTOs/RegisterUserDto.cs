@@ -1,4 +1,4 @@
-﻿using PSAch.API.Models;
+﻿using PSAch.Core;
 using System.ComponentModel.DataAnnotations;
 
 namespace PSAch.API.DTOs

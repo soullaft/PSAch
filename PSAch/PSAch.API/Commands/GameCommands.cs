@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using PSAch.API.DTOs;
-using PSAch.API.Models;
 using PSAch.API.Services.Cache;
 
 namespace PSAch.API.Commands

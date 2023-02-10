@@ -2,7 +2,7 @@
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using PSAch.API.Models;
+using PSAch.Core;
 
 namespace PSAch.API.Services.Mail
 {
@@ -15,7 +15,7 @@ namespace PSAch.API.Services.Mail
             _mailSettings = mailSettings.Value;
         }
 
-        public async Task SendEmailAsync(MailRequest mailRequest)
+        public async Task SendEmailAsync(MailRequest<IFormFile> mailRequest)
         {
             var email = new MimeMessage
             {

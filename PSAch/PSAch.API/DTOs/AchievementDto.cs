@@ -1,4 +1,4 @@
-﻿using PSAch.API.Models;
+﻿using PSAch.Core;
 
 namespace PSAch.API.DTOs
 {

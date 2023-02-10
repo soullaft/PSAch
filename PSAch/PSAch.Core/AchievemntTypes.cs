@@ -1,6 +1,6 @@
-﻿namespace PSAch.API.Models
+﻿namespace PSAch.Core
 {
-    public enum AchievemntTypes : int
+    public enum AchievemntTypes
     {
         Bronze = 0,
         Silver = 1,

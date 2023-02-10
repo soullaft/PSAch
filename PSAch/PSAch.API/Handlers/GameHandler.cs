@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using PSAch.API.Commands;
 using PSAch.API.Data;
 using PSAch.API.DTOs;
-using PSAch.API.Models;
 using PSAch.API.Queries;
+using PSAch.Core;
 
 namespace PSAch.API.Handlers
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
-using PSAch.API.Models;
+using PSAch.Core;
 
 namespace PSAch.API.DTOs
 {

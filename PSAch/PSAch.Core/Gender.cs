@@ -1,4 +1,4 @@
-﻿namespace PSAch.API.Models
+﻿namespace PSAch.Core
 {
     public enum Gender : int
     {

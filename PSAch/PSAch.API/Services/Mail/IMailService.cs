@@ -1,9 +1,9 @@
-﻿using PSAch.API.Models;
+﻿using PSAch.Core;
 
 namespace PSAch.API.Services.Mail
 {
     public interface IMailService
     {
-        Task SendEmailAsync(MailRequest mailRequest);
+        Task SendEmailAsync(MailRequest<IFormFile> mailRequest);
     }
 }

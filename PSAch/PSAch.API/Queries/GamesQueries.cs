@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using PSAch.API.Models;
 using PSAch.API.Services.Cache;
+using PSAch.Core;
 
 namespace PSAch.API.Queries
 {

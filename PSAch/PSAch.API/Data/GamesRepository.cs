@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PSAch.API.Models;
 using AutoMapper;
 using PSAch.API.DTOs;
+using PSAch.Core;
 
 namespace PSAch.API.Data
 {

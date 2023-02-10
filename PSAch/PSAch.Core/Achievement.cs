@@ -1,4 +1,4 @@
-﻿namespace PSAch.API.Models
+﻿namespace PSAch.Core
 {
     public class Achievement : BaseModel
     {
@@ -16,6 +16,6 @@
 
         public Photo? Photo { get; set; }
 
-        public int? PhotoId {get;set;}
+        public int? PhotoId { get; set; }
     }
 }
