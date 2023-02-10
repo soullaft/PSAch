@@ -33,7 +33,7 @@ namespace PSAch.API.Services.Mail
                     {
                         using (var ms = new MemoryStream())
                         {
-                            file.CopyTo(ms);
+                            await file.CopyToAsync(ms);
                             fileBytes = ms.ToArray();
                         }
                         builder.Attachments.Add(file.FileName, fileBytes, ContentType.Parse(file.ContentType));

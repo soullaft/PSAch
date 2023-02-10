@@ -1,6 +1,6 @@
 ﻿namespace PSAch.Core
 {
-    public enum Gender : int
+    public enum Gender
     {
         Male = 0,
         Female = 1,
