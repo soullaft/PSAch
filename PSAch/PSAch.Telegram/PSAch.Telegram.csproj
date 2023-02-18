@@ -14,4 +14,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PSAch.Core\PSAch.Core.csproj" />
+  </ItemGroup>
+
 </Project>
