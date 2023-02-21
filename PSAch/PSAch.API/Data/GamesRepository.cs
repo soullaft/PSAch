@@ -56,7 +56,7 @@ namespace PSAch.API.Data
                 throw new Exception("Something went wrong");
         }
 
-        public async Task<IEnumerable<Game>> GetAllAsync(CancellationToken token = default) => await _context.Games.ToListAsync(cancellationToken: token);
+        public async Task<IEnumerable<Game>> GetAllAsync(CancellationToken token = default) => await _context.Games.AsNoTracking().ToListAsync(cancellationToken: token);
 
         public async Task<bool> SaveChangesAsync()
         {
